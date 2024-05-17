@@ -90,7 +90,7 @@ jobs:
           go-version-file: 'go.mod'
           
       - name: Build Docker image
-        run: docker build -t nas:latest .
+        run: docker build -t ios5g/nas:latest .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.PASSWORD }}" | docker login -u "${{ secrets.USERNAME }}" --password-stdin
