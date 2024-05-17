@@ -259,3 +259,19 @@ func (protocolConfigurationOptions *ProtocolConfigurationOptions) AddIPv4LinkMTU
 		append(protocolConfigurationOptions.ProtocolOrContainerList, protocolOrContainerUnit)
 	return
 }
+
+func (protocolConfigurationOptions *ProtocolConfigurationOptions) AddBearerControlMode() (err error) {
+	logger.ConvertLog.Traceln("In Add Bearer Control Mode")
+	protocolOrContainerUnit := NewProtocolOrContainerUnit()
+
+	protocolOrContainerUnit.ProtocolOrContainerID = nasMessage.MSSupportOfNetworkRequestedBearerControlIndicatorUL
+	protocolOrContainerUnit.LengthOfContents = 1
+	logger.ConvertLog.Traceln("LengthOfContents: ", protocolOrContainerUnit.LengthOfContents)
+	protocolOrContainerUnit.Contents =
+		append(protocolOrContainerUnit.Contents, uint8(0x02))
+	logger.ConvertLog.Traceln("Contents: ", protocolOrContainerUnit.Contents)
+
+	protocolConfigurationOptions.ProtocolOrContainerList =
+		append(protocolConfigurationOptions.ProtocolOrContainerList, protocolOrContainerUnit)
+	return
+}
