@@ -89,7 +89,8 @@ jobs:
       - uses: docker/setup-buildx-action@v3.0.0
       
       - name: Build Docker image
-        run: make docker-build
+        run: docker build -t nas:latest
+        #run: make docker-build
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.PASSWORD }}" | docker login -u "${{ secrets.USERNAME }}" --password-stdin
